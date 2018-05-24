@@ -1,0 +1,10 @@
+<%= form_tag(forums_path, method: :post) do %>
+  <%= label_tag :タイトル %>
+  <%= text_field_tag :title %>
+  <%= label_tag :名前 %>
+  <%= text_field_tag :name %>
+  <%= label_tag :内容  %>
+  <p>(※最初のコメントとして投稿されます)</p>
+  <%= text_area_tag :content %>
+  <%= submit_tag "新規作成" %>
+<% end %>

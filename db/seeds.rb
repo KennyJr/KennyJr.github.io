@@ -22,8 +22,25 @@ users = User.order(:created_at).take(6)
 50.times do
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.microposts.create!(content: content) }
-
 end
+
+users = User.order(:created_at).take(1)
+10.times do |n|
+  title = Faker::Lorem.sentence(2)
+  name = Faker::Name.name
+  users.each { |user| user.forums.create!(title: title, name: name) }
+end
+
+forums = Forum.all
+users = User.order(:created_at).take(6)
+forums.each { |forum|
+  10.times do
+    name = Faker::Lorem.sentence(2)
+    content = Faker::Lorem.sentence(10)
+    users.each { |user| user.messages.create!(content: content, name: name, forum_id: forum.id) }
+  end
+}
+
 
 users = User.all
 user  = users.first

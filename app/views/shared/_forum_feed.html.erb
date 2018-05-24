@@ -1,0 +1,6 @@
+<% if @forum_feed_items.any? %>
+  <ol class="forums">
+    <%= render @forum_feed_items %>
+  </ol>
+  <%= will_paginate @forum_feed_items %>
+<% end %>

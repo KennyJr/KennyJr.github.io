@@ -21,9 +21,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = ["Welcome to the Sample App!"]
       redirect_to @user
     else
+      flash[:danger] = @user.errors.full_messages
       render 'new'
     end
   end
@@ -33,16 +34,17 @@ class UsersController < ApplicationController
 
     def update
       if @user.update_attributes(user_params)
-        flash[:success] = "Profile updated"
+        flash[:success] = ["Profile updated"]
         redirect_to @user
       else
-        render 'edit'
+        flash[:danger] = @user.errors.full_messages
+        redirect_to edit_user_path
     end
   end
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = ["User deleted"]
     redirect_to users_url
   end
 
@@ -59,6 +61,7 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
+
 
   private
 

@@ -1,0 +1,10 @@
+<%= form_for(@message) do |f| %>
+  <div class="field">
+    <%= f.hidden_field :forum_id, value: @forum.id %>
+    <p>名前</p>
+    <%= f.text_field :name %>
+    <p>内容</p>
+    <%= f.text_area :content, placeholder: "コメントを入力してください。" %>
+  </div>
+  <%= f.submit "書き込む", class: "btn btn-primary" %>
+<% end %>

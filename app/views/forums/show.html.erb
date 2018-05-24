@@ -1,0 +1,22 @@
+<% provide(:title, @forum.title) %>
+<div class="row">
+  <h1>
+    <%= @forum.title %>
+  </h1>
+
+  <aside class="col-md-4">
+    <section class="message_form">
+      <%= render 'shared/message_form' %>
+    </section>
+  </aside>
+  <p>書き込み件数(<%= @messages.count %>)  </p>
+  <div class="col-md-8">
+    <% if @messages.any? %>
+      <ol class="messages">
+        <%= render @messages %>
+      </ol>
+      <%= will_paginate @messages %>
+    <% end %>
+  </div>
+
+</div>

@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512110320) do
+ActiveRecord::Schema.define(version: 20180521060051) do
+
+  create_table "forums", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "title"
+    t.index ["user_id", "created_at", "name", "title"], name: "index_forums_on_user_id_and_created_at_and_name_and_title"
+    t.index ["user_id"], name: "index_forums_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "forum_id"
+    t.index ["user_id", "created_at"], name: "index_messages_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
